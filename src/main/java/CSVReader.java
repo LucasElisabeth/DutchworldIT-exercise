@@ -1,20 +1,29 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class CSVReader {
 
-    private String line = "";
-    private String seperator = ",";
+    private String line;
+    private String selector;
 
-    public String[] readFile(File file) {
+    public CSVReader(String selector) {
+        this.selector = selector;
+    }
 
-        String[] strings = null;
+    public CSVReader() {
+        selector = ",";
+    }
+
+    public ArrayList<String> readFile(File file) {
+
+        ArrayList<String> strings = new ArrayList<>();
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
             while ((line = br.readLine()) != null) {
 
-                strings = line.split(seperator);
-
+                strings.add(line);
             }
 
         } catch (IOException e) {
@@ -22,5 +31,10 @@ public class CSVReader {
         }
 
         return strings;
+    }
+
+    public String[] translateLine(String string) {
+
+        return string.split(selector);
     }
 }

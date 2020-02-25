@@ -7,7 +7,7 @@ public class CSVReaderTest {
 
     public static void main(String[] args) {
 
-        String line = "";
+        String line;
 
         ArrayList<String> strings = new ArrayList<>();
 
@@ -26,8 +26,7 @@ public class CSVReaderTest {
         StringBuilder stringBuilder = new StringBuilder("");
 
         for (String string : strings) {
-            stringBuilder.append(string);
-            stringBuilder.append(".\n");
+            stringBuilder.append(string).append("\n");
         }
         System.out.println(stringBuilder.toString());
 
