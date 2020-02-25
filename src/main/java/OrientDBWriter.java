@@ -1,3 +1,4 @@
+import com.orientechnologies.orient.core.db.ODatabaseSession;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 
@@ -5,19 +6,22 @@ import java.io.File;
 
 public class OrientDBWriter {
 
+    private String url;
     private File csvFile;
     private CSVReader reader = new CSVReader();
 
-    public OrientDBWriter(File file) {
+    public OrientDBWriter(File file, String url) {
         csvFile = file;
+        this.url = url;
     }
 
-    public static void main(String[] args) {
+    public void writeToDB(String DBName) {
+
+        OrientDB orientDB = new OrientDB(url, OrientDBConfig.defaultConfig());
+        ODatabaseSession db = orientDB.open(DBName, "admin", "admin");
 
 
-        OrientDB orientDB = new OrientDB("remote:localhost", OrientDBConfig.defaultConfig());
-
-
+        db.close();
         orientDB.close();
     }
 
