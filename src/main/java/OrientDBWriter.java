@@ -26,6 +26,12 @@ public class OrientDBWriter {
         db = orientDB.open(DBName, "admin", "admin");
     }
 
+    public void closeConnection(ODatabaseSession db, OrientDB orientDB) {
+
+        db.close();
+        orientDB.close();
+    }
+
     public void writeToDB(ODatabaseSession db, OrientDB orientDB) {
 
         ArrayList<String> stringArrayList = reader.readFile(csvFile);
@@ -42,8 +48,6 @@ public class OrientDBWriter {
             db.save(doc);
         }
 
-        db.close();
-        orientDB.close();
     }
 
 
