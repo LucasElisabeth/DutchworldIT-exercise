@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
+import java.io.*;
 
 public class CSVReader {
 
@@ -8,6 +7,17 @@ public class CSVReader {
 
     public String readFile(File file) {
 
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+                while ((line = br.readLine()) != null) {
+                    
+                }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return null;

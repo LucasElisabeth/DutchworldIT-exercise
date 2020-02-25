@@ -3,7 +3,7 @@ import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfig;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-public class Test {
+public class DBTest {
 
     public static void main(String[] args) {
 
