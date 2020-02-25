@@ -5,21 +5,22 @@ public class CSVReader {
     private String line = "";
     private String seperator = ",";
 
-    public String readFile(File file) {
+    public String[] readFile(File file) {
+
+        String[] strings = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
-                while ((line = br.readLine()) != null) {
-                    
-                }
+            while ((line = br.readLine()) != null) {
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+                strings = line.split(seperator);
+
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        return null;
+        return strings;
     }
 }
