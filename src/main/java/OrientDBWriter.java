@@ -11,17 +11,22 @@ public class OrientDBWriter {
     private String url;
     private File csvFile;
     private CSVReader reader = new CSVReader();
+    private OrientDB orientDB;
+    private ODatabaseSession db;
+
 
     public OrientDBWriter(File file, String url) {
         csvFile = file;
         this.url = url;
     }
 
-    public void writeToDB(String DBName) {
+    public void connectToDB(String DBName) {
 
-        OrientDB orientDB = new OrientDB(url, OrientDBConfig.defaultConfig());
+        orientDB = new OrientDB(url, OrientDBConfig.defaultConfig());
+        db = orientDB.open(DBName, "admin", "admin");
+    }
 
-        ODatabaseSession db = orientDB.open(DBName, "admin", "admin");
+    public void writeToDB(ODatabaseSession db, OrientDB orientDB) {
 
         ArrayList<String> stringArrayList = reader.readFile(csvFile);
         for (String string : stringArrayList) {
@@ -42,4 +47,15 @@ public class OrientDBWriter {
     }
 
 
+    public String getUrl() {
+        return url;
+    }
+
+    public OrientDB getOrientDB() {
+        return orientDB;
+    }
+
+    public ODatabaseSession getDb() {
+        return db;
+    }
 }
