@@ -28,11 +28,12 @@ public class OrientDBWriter {
         format = new SimpleDateFormat("dd-MM-yyyy");
     }
 
-    public void connectToDB(String DBName) {
+    public void connectToDB(String dbname) {
 
         orientDB = new OrientDB(url, OrientDBConfig.defaultConfig());
-        db = orientDB.open(DBName, "admin", "admin");
+        db = orientDB.open(dbname, "admin", "admin");
         db.createClassIfNotExist("Person");
+        System.out.println("You have connected to " + dbname + "!\n");
     }
 
     public void closeConnection(ODatabaseSession db, OrientDB orientDB) {
