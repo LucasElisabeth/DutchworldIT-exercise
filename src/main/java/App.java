@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class App {
 
-    private static final String OPERATION_COMPLETE_MESSAGE = "\n- - - - - - - - - - - -\n| Operation completed |\n- - - - - - - - - - - -";
 
     public static void main(String[] args) {
 
@@ -47,12 +46,12 @@ public class App {
             switch (input) {
                 case 1:
                     System.out.println("Writing data from file to DB");
-                    writer.writeToDB(writer.getDb(), writer.getOrientDB());
+                    writer.writeToDB(writer.getDb());
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
-                    System.out.println(OPERATION_COMPLETE_MESSAGE);
                     return;
                 case 2:
                     System.out.println("Removing all data from " + name + "!");
+                    writer.removeFromDB(writer.getDb());
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
                     return;
                 case 3:
@@ -67,10 +66,10 @@ public class App {
         System.out.println("You have connected to " + name + "!\n");
 
         System.out.println("Menu Options:");
-        System.out.println("1. Add data");
+        System.out.println("1. Add local file");
         System.out.println("2. Remove all data");
-        System.out.println("3. Some menu option");
-        System.out.println("4. Some menu option");
+        System.out.println("3. Add new record");
+        System.out.println("4. Show records");
         System.out.println("5. Exit the program\n");
         System.out.print("Please select an option from 1-5\r\n");
     }

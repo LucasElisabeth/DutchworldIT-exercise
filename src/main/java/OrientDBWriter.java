@@ -13,6 +13,7 @@ public class OrientDBWriter {
     private CSVReader reader = new CSVReader();
     private OrientDB orientDB;
     private ODatabaseSession db;
+    private static final String OPERATION_COMPLETE_MESSAGE = "\n- - - - - - - - - - - -\n| Operation completed |\n- - - - - - - - - - - -";
 
 
     public OrientDBWriter(File file, String url) {
@@ -32,7 +33,7 @@ public class OrientDBWriter {
         orientDB.close();
     }
 
-    public void writeToDB(ODatabaseSession db, OrientDB orientDB) {
+    public void writeToDB(ODatabaseSession db) {
 
         ArrayList<String> stringArrayList = reader.readFile(csvFile);
         for (String string : stringArrayList) {
@@ -48,6 +49,14 @@ public class OrientDBWriter {
             db.save(doc);
         }
 
+        System.out.println(OPERATION_COMPLETE_MESSAGE);
+    }
+
+    public void removeFromDB(ODatabaseSession db) {
+        String query = "DELETE from person";
+        db.command(query);
+
+        System.out.println(OPERATION_COMPLETE_MESSAGE);
     }
 
 
