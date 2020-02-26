@@ -18,7 +18,6 @@ public class CSVReader {
 
         ArrayList<String> strings = new ArrayList<>();
 
-
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
             while ((line = br.readLine()) != null) {
