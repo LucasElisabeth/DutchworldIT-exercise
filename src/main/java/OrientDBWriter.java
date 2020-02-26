@@ -51,11 +51,11 @@ public class OrientDBWriter {
             ODocument doc = new ODocument("Person");
 
             try {
-                doc.field("date", format.parse(strings[2]));
-                doc.field("age", Float.parseFloat(strings[4]));
                 doc.field("name", strings[0]);
                 doc.field("workplace", strings[1]);
+                doc.field("date", format.parse(strings[2]));
                 doc.field("hometown", strings[3]);
+                doc.field("age", Float.parseFloat(strings[4]));
                 doc.field("description", strings[5]);
 
             } catch (ParseException ex) {
@@ -106,18 +106,18 @@ public class OrientDBWriter {
             Scanner scanner = new Scanner(System.in);
             ODocument doc = new ODocument("Person");
 
-            System.out.println("Date:");
-            String date = scanner.nextLine();
-            doc.field("date", format.parse(date));
-            System.out.println("Age:");
-            String age = scanner.nextLine();
-            doc.field("age", Float.parseFloat(age));
             System.out.println("Name:");
             doc.field("name", scanner.nextLine());
             System.out.println("Workplace:");
             doc.field("workplace", scanner.nextLine());
+            System.out.println("Date:");
+            String date = scanner.nextLine();
+            doc.field("date", format.parse(date));
             System.out.println("hometown:");
             doc.field("hometown", scanner.nextLine());
+            System.out.println("Age:");
+            String age = scanner.nextLine();
+            doc.field("age", Float.parseFloat(age));
             System.out.println("Description:");
             doc.field("description", scanner.nextLine());
 

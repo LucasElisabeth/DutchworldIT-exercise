@@ -49,7 +49,7 @@ public class App {
         int input = scanner.nextInt();
 
         while (input != 5) {
-            System.out.println("You have entered " + input + "\r\n");
+            System.out.println("You have entered " + input + "!\r\n");
             switch (input) {
                 case 1:
                     System.out.println("Writing data from file to DB");
