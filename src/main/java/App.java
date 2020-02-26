@@ -55,8 +55,13 @@ public class App {
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
                     return;
                 case 3:
+                    System.out.println("Showing all current records:");
+                    writer.showRecords(writer.getDb());
+                    writer.closeConnection(writer.getDb(), writer.getOrientDB());
                     break;
                 case 4:
+                    System.out.println("Manually adding a record!");
+                    writer.closeConnection(writer.getDb(), writer.getOrientDB());
                     break;
             }
         }
@@ -68,8 +73,8 @@ public class App {
         System.out.println("Menu Options:");
         System.out.println("1. Add local file");
         System.out.println("2. Remove all data");
-        System.out.println("3. Add new record");
-        System.out.println("4. Show records");
+        System.out.println("3. Show records");
+        System.out.println("4. Add a new record");
         System.out.println("5. Exit the program\n");
         System.out.print("Please select an option from 1-5\r\n");
     }
