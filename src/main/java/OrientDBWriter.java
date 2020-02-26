@@ -51,7 +51,7 @@ public class OrientDBWriter {
 
             try {
                 doc.field("date", format.parse(strings[2]));
-                doc.field("age", Double.parseDouble(strings[4]));
+                doc.field("age", Float.parseFloat(strings[4]));
                 doc.field("name", strings[0]);
                 doc.field("workplace", strings[1]);
                 doc.field("hometown", strings[3]);
@@ -90,7 +90,7 @@ public class OrientDBWriter {
 
         while (rs.hasNext()) {
             OResult item = rs.next();
-            System.out.println("[-] person: " + item.getProperty("name"));
+            System.out.println("[-] person: " + item.getProperty("name") + ", " + item.getProperty("age") + ", they live in " + item.getProperty("hometown") + ".");
         }
 
         rs.close();
@@ -98,24 +98,27 @@ public class OrientDBWriter {
         System.out.println(OPERATION_COMPLETE_MESSAGE);
     }
 
-    public void addNewRecord(ODatabaseSession db, Scanner scanner) {
+    public void addNewRecord(ODatabaseSession db) {
 
         try {
 
+            Scanner scanner = new Scanner(System.in);
             ODocument doc = new ODocument("Person");
 
-            System.out.println("date:");
-            doc.field("date", format.parse(scanner.nextLine()));
+            System.out.println("Date:");
+            String date = scanner.nextLine();
+            doc.field("date", format.parse(date));
             System.out.println("Age:");
-            doc.field("age:", Double.parseDouble(scanner.nextLine()));
+            String age = scanner.nextLine();
+            doc.field("age", Float.parseFloat(age));
             System.out.println("Name:");
             doc.field("name", scanner.nextLine());
-            System.out.println("workplace:");
+            System.out.println("Workplace:");
             doc.field("workplace", scanner.nextLine());
             System.out.println("hometown:");
             doc.field("hometown", scanner.nextLine());
-            System.out.println("description:");
-            doc.field("description:", scanner.nextLine());
+            System.out.println("Description:");
+            doc.field("description", scanner.nextLine());
 
             db.save(doc);
 
@@ -128,6 +131,8 @@ public class OrientDBWriter {
             closeConnection(db, orientDB);
             System.exit(1);
         }
+
+        System.out.println(OPERATION_COMPLETE_MESSAGE);
     }
 
     public String getUrl() {

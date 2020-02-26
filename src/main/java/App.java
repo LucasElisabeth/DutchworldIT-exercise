@@ -48,12 +48,12 @@ public class App {
                     System.out.println("Writing data from file to DB");
                     writer.writeToDB(writer.getDb());
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
-                    return;
+                    break;
                 case 2:
                     System.out.println("Removing all data from " + name + "!");
                     writer.removeFromDB(writer.getDb());
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
-                    return;
+                    break;
                 case 3:
                     System.out.println("Showing all current records:");
                     writer.showRecords(writer.getDb());
@@ -61,6 +61,7 @@ public class App {
                     break;
                 case 4:
                     System.out.println("Manually adding a record!");
+                    writer.addNewRecord(writer.getDb());
                     writer.closeConnection(writer.getDb(), writer.getOrientDB());
                     break;
             }
