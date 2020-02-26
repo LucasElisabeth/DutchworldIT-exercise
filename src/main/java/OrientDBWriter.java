@@ -27,6 +27,7 @@ public class OrientDBWriter {
 
         orientDB = new OrientDB(url, OrientDBConfig.defaultConfig());
         db = orientDB.open(DBName, "admin", "admin");
+        db.createClassIfNotExist("Person");
     }
 
     public void closeConnection(ODatabaseSession db, OrientDB orientDB) {
